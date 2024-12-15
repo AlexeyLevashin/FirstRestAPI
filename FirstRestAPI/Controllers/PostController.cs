@@ -23,7 +23,7 @@ public class PostController : ControllerBase
         [HttpGet]
         public async Task<IActionResult> GetPosts()
         {
-            var posts = await _postService.GetPublishedPostsAsync();
+            var posts = await _postService.GetAllPostsAsync();
             return Ok(posts);
         }
 
@@ -35,7 +35,14 @@ public class PostController : ControllerBase
             if (post == null) return NotFound();
             return Ok(post);
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
         [Authorize(Roles = "Author")]
         [HttpPost]
         public async Task<IActionResult> CreatePost(Post post)
@@ -58,7 +65,10 @@ public class PostController : ControllerBase
             await _postService.UpdatePostAsync(updatedPost);
             return NoContent();
         }
-
+        
+        
+        
+        
         [Authorize(Roles = "Author")]
         [HttpPut("{id}/publish")]
         public async Task<IActionResult> PublishPost(int id)

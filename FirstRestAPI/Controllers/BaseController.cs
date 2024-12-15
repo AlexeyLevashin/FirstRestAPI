@@ -12,8 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 public class 
     BaseController : ControllerBase
 {
-    // private string AuthHeader => HttpContext.Request.Headers.Authorization.ToString();
-    //
-    // protected int UserId => AuthHeader.GetUserId();
-    // protected Roles Role => AuthHeader.GetRole();
+    private string AuthHeader => HttpContext.Request.Headers.Authorization.ToString();
+    
+    protected int UserId => AuthHeader.GetUserId();
+    protected Roles Role => AuthHeader.GetRole();
 }

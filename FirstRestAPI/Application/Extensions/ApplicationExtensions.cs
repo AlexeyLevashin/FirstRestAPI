@@ -11,7 +11,7 @@ public static class ApplicationExtensions
 {
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
-        services.AddScoped<IAuthServices, AuthServices>();
+        // services.AddScoped<IAuthServices, AuthServices>();
         services.AddScoped<IPostServices, PostServices>();
         return services;
     }

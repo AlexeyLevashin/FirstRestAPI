@@ -6,7 +6,7 @@ namespace FirstRestAPI.Repositories;
 public class PostRepository:ApplicationContext, IPostRepository
 {
 
-    public readonly ApplicationContext _context;
+    private readonly ApplicationContext _context;
 
     public PostRepository(ApplicationContext context)
     {

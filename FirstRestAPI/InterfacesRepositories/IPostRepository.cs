@@ -12,15 +12,4 @@ public interface IPostRepository
     public Task UpdatePostAsync(Post post);
     public Task DeletePostAsync(int id);
     
-    
-    
-    // public Task<List<Post>> GetAllPostsByUserId(int userId);
-    // public Task<Post?> GetPostById(int id);
-    // public Task<Post> AddPost(Post post);
-    // public Task UpdatePost(Post post);
-    // public Task DeleteImage(int imageId);
-    // public Task PublishPost(int id);
-    // public Task<Image> AddImageToPost(int postId, string imageName);
-    // public Task<Post?> GetPostByIdempotencyKey(string idempotencyKey);
-
 }
