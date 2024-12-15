@@ -25,10 +25,10 @@ public static class ApiExtensions
                     ValidateIssuerSigningKey = true,
                 };
             });
-        
+
         return services;
     }
-    
+
     public static IServiceCollection AddSwaggerWithAuth(this IServiceCollection services)
     {
         return services.AddSwaggerGen(options =>

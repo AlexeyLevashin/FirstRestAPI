@@ -7,8 +7,6 @@ namespace FirstRestAPI.Infrastructure;
 
 public static class InfrastructureExtensions
 {
-
-
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, UserRepository>();
@@ -16,5 +14,3 @@ public static class InfrastructureExtensions
         return services;
     }
 }
-
-

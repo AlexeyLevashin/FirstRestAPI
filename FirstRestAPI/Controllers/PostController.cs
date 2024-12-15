@@ -9,13 +9,13 @@ using static FirstRestAPI.Common.Enums.Roles;
 [Route("api/[controller]")]
 public class PostController : ControllerBase
 {
-   [ApiController]
+    [ApiController]
     [Route("api/[controller]")]
     public class PostsController : ControllerBase
     {
-        private readonly IPostServices _postService;
+        private readonly IPostService _postService;
 
-        public PostsController(IPostServices postService)
+        public PostsController(IPostService postService)
         {
             _postService = postService;
         }
@@ -35,20 +35,14 @@ public class PostController : ControllerBase
             if (post == null) return NotFound();
             return Ok(post);
         }
-        
-        
-        
-        
-        
-        
-        
-        
+
+
         [Authorize(Roles = "Author")]
         [HttpPost]
         public async Task<IActionResult> CreatePost(Post post)
         {
             // Add logic to get AuthorId from authenticated user
-            post.authorId = GetUserId();//Example method - replace with actual logic
+            post.authorId = GetUserId(); //Example method - replace with actual logic
             await _postService.AddPostAsync(post);
             return CreatedAtAction(nameof(GetPost), new { id = post.postId }, post);
         }
@@ -58,17 +52,15 @@ public class PostController : ControllerBase
         public async Task<IActionResult> UpdatePost(int id, Post updatedPost)
         {
             var post = await _postService.GetPostAsync(id);
-             if (post == null) return NotFound();
+            if (post == null) return NotFound();
 
             if (post.authorId != GetUserId()) return Unauthorized();
-              updatedPost.postId = post.postId;
+            updatedPost.postId = post.postId;
             await _postService.UpdatePostAsync(updatedPost);
             return NoContent();
         }
-        
-        
-        
-        
+
+
         [Authorize(Roles = "Author")]
         [HttpPut("{id}/publish")]
         public async Task<IActionResult> PublishPost(int id)
@@ -76,7 +68,9 @@ public class PostController : ControllerBase
             await _postService.PublishPostAsync(id, GetUserId());
             return NoContent();
         }
-         private int GetUserId() {
+
+        private int GetUserId()
+        {
             //REPLACE THIS WITH YOUR ACTUAL USER ID RETRIEVAL LOGIC
             //This is a placeholder.  You'll need to get the user ID from the authentication system.
             return 1;

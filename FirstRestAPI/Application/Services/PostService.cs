@@ -2,6 +2,7 @@ using FirstRestAPI.Interfaces;
 using FirstRestAPI.InterfacesRepositories;
 using FirstRestAPI.Models.Base;
 using FirstRestAPI.Repositories;
+
 namespace FirstRestAPI.Services;
 
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,12 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 
-public class PostServices:IPostServices
+public class PostService : IPostService
 {
-
     private readonly IPostRepository _postRepository;
-    private readonly IPostServices _postServicesImplementation;
+    private readonly IPostService _postServiceImplementation;
 
-    public PostServices(IPostRepository postRepository)
+    public PostService(IPostRepository postRepository)
     {
         _postRepository = postRepository;
     }
@@ -32,15 +32,15 @@ public class PostServices:IPostServices
     }
 
 
-    // public async Task<IEnumerable<Post>> GetPublishedPostsAsync()
-    // {
-    //     return await _postRepository.GetPublishedPostsAsync();
-    // }
+    public async Task<IEnumerable<Post>> GetPublishedPostsAsync()
+    {
+        return await _postRepository.GetPublishedPostsAsync();
+    }
 
-    // public async Task<IEnumerable<Post>> GetPostsForAuthorAsync(int authorId)
-    // {
-    //     return await _postRepository.GetPostsForAuthorAsync(authorId);
-    // }
+    public async Task<IEnumerable<Post>> GetPostsForAuthorAsync(int authorId)
+    {
+        return await _postRepository.GetPostsForAuthorAsync(authorId);
+    }
 
     public async Task AddPostAsync(Post post)
     {
@@ -48,17 +48,18 @@ public class PostServices:IPostServices
     }
 
 
-    // public async Task DeletePostAsync(int id)
-    // {
-    //     await _postRepository.DeletePostAsync(id);
-    // }
+    public async Task DeletePostAsync(int id)
+    {
+        await _postRepository.DeletePostAsync(id);
+    }
 
     public async Task UpdatePostAsync(Post post)
     {
         await _postRepository.UpdatePostAsync(post);
     }
 
-    public async Task PublishPostAsync(int id, int userId) {
+    public async Task PublishPostAsync(int id, int userId)
+    {
         var post = await _postRepository.GetPostAsync(id);
         if (post == null) return;
         if (post.authorId != userId) return;

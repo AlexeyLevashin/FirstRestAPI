@@ -1,6 +1,5 @@
 namespace FirstRestAPI.Interfaces;
 
-public interface IAuthServices
+public interface IAuthService
 {
-    
 }

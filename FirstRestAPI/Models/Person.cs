@@ -7,5 +7,4 @@ public class Person
     public string passwordHash { get; set; }
     public string role { get; set; }
     public string refreshToken { get; set; }
-    
 }

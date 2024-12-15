@@ -14,7 +14,7 @@ using FirstRestAPI.Common.Enums;
 
 
 var builder = WebApplication.CreateBuilder(args);
- // var connectionString = builder.Configuration["ConnectionStrings:Database"];
+// var connectionString = builder.Configuration["ConnectionStrings:Database"];
 
 builder.Services.AddJwtTokenBearer();
 builder.Services.AddSwaggerWithAuth();
@@ -38,4 +38,3 @@ app.UseAuthorization();
 app.MapControllers();
 app.UseDeveloperExceptionPage();
 app.Run();
-

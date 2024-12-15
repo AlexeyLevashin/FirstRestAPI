@@ -1,8 +1,6 @@
-using FirstRestAPI.Models;
+namespace FirstRestAPI.Interfaces;
 
-namespace FirstRestAPI.InterfacesRepositories;
-
-public interface IPostRepository
+public interface IPostService
 {
     public Task<Post> GetPostAsync(int id);
     public Task<IEnumerable<Post>> GetAllPostsAsync();
@@ -11,5 +9,5 @@ public interface IPostRepository
     public Task AddPostAsync(Post post);
     public Task UpdatePostAsync(Post post);
     public Task DeletePostAsync(int id);
-    
+    public Task PublishPostAsync(int id, int userId);
 }
