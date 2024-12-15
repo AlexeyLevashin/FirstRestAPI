@@ -26,8 +26,7 @@ public class PostController : ControllerBase
             var posts = await _postService.GetAllPostsAsync();
             return Ok(posts);
         }
-
-
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPost(int id)
         {
@@ -42,7 +41,7 @@ public class PostController : ControllerBase
         public async Task<IActionResult> CreatePost(Post post)
         {
             // Add logic to get AuthorId from authenticated user
-            post.authorId = GetUserId(); //Example method - replace with actual logic
+            // post.authorId = GetUserId(); //Example method - replace with actual logic
             await _postService.AddPostAsync(post);
             return CreatedAtAction(nameof(GetPost), new { id = post.postId }, post);
         }
@@ -53,8 +52,8 @@ public class PostController : ControllerBase
         {
             var post = await _postService.GetPostAsync(id);
             if (post == null) return NotFound();
-
-            if (post.authorId != GetUserId()) return Unauthorized();
+        
+            // if (post.authorId != GetUserId()) return Unauthorized();
             updatedPost.postId = post.postId;
             await _postService.UpdatePostAsync(updatedPost);
             return NoContent();
@@ -65,7 +64,7 @@ public class PostController : ControllerBase
         [HttpPut("{id}/publish")]
         public async Task<IActionResult> PublishPost(int id)
         {
-            await _postService.PublishPostAsync(id, GetUserId());
+            // await _postService.PublishPostAsync(id, GetUserId());
             return NoContent();
         }
 

@@ -23,47 +23,47 @@ public class PostService : IPostService
 
     public async Task<Post> GetPostAsync(int id)
     {
-        return await _postRepository.GetPostAsync(id);
+        return await _postRepository.GetPost(id);
     }
 
     public async Task<IEnumerable<Post>> GetAllPostsAsync()
     {
-        return await _postRepository.GetAllPostsAsync();
+        return await _postRepository.GetAllPosts();
     }
 
 
     public async Task<IEnumerable<Post>> GetPublishedPostsAsync()
     {
-        return await _postRepository.GetPublishedPostsAsync();
+        return await _postRepository.GetPublishedPosts();
     }
 
     public async Task<IEnumerable<Post>> GetPostsForAuthorAsync(int authorId)
     {
-        return await _postRepository.GetPostsForAuthorAsync(authorId);
+        return await _postRepository.GetPostsForAuthor(authorId);
     }
 
     public async Task AddPostAsync(Post post)
     {
-        await _postRepository.AddPostAsync(post);
+        await _postRepository.AddPost(post);
     }
 
 
     public async Task DeletePostAsync(int id)
     {
-        await _postRepository.DeletePostAsync(id);
+        await _postRepository.DeletePost(id);
     }
 
     public async Task UpdatePostAsync(Post post)
     {
-        await _postRepository.UpdatePostAsync(post);
+        await _postRepository.UpdatePost(post);
     }
 
     public async Task PublishPostAsync(int id, int userId)
     {
-        var post = await _postRepository.GetPostAsync(id);
+        var post = await _postRepository.GetPost(id);
         if (post == null) return;
         if (post.authorId != userId) return;
         post.ispublished = true;
-        await _postRepository.UpdatePostAsync(post);
+        await _postRepository.UpdatePost(post);
     }
 }

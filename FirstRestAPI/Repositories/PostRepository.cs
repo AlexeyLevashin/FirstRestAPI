@@ -13,34 +13,34 @@ public class PostRepository : ApplicationContext, IPostRepository
     }
 
 
-    public async Task<Post> GetPostAsync(int id)
+    public async Task<Post> GetPost(int id)
     {
         return await Task.FromResult(_context.Posts.FirstOrDefault(p => p.postId == id));
     }
 
-    public async Task<IEnumerable<Post>> GetAllPostsAsync()
+    public async Task<IEnumerable<Post>> GetAllPosts()
     {
         return await Task.FromResult(_context.Posts);
     }
 
 
-    public async Task<IEnumerable<Post>> GetPostsForAuthorAsync(int authorId)
+    public async Task<IEnumerable<Post>> GetPostsForAuthor(int authorId)
     {
         return await Task.FromResult(_context.Posts.Where(p => p.authorId == authorId));
     }
 
-    public async Task<IEnumerable<Post>> GetPublishedPostsAsync()
+    public async Task<IEnumerable<Post>> GetPublishedPosts()
     {
         return await Task.FromResult(_context.Posts.Where(p => p.ispublished));
     }
 
-    public async Task AddPostAsync(Post post)
+    public async Task AddPost(Post post)
     {
         _context.Posts.Add(post);
         await Task.CompletedTask;
     }
 
-    public async Task UpdatePostAsync(Post post)
+    public async Task UpdatePost(Post post)
     {
         var existingPost = _context.Posts.FirstOrDefault(p => p.postId == post.postId);
         if (existingPost != null)
@@ -52,7 +52,7 @@ public class PostRepository : ApplicationContext, IPostRepository
         await Task.CompletedTask;
     }
 
-    public async Task DeletePostAsync(int id)
+    public async Task DeletePost(int id)
     {
         var postToRemove = _context.Posts.FirstOrDefault(p => p.postId == id);
         if (postToRemove != null)

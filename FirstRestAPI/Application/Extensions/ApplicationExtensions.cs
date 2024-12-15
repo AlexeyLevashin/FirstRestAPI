@@ -1,4 +1,5 @@
 using FirstRestAPI.Interfaces;
+using FirstRestAPI.Models.Base;
 using FirstRestAPI.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,7 @@ public static class ApplicationExtensions
     {
         // services.AddScoped<IAuthServices, AuthServices>();
         services.AddScoped<IPostService, PostService>();
+        services.AddScoped<ApplicationContext>();
         return services;
     }
 }

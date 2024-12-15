@@ -4,11 +4,11 @@ namespace FirstRestAPI.InterfacesRepositories;
 
 public interface IPostRepository
 {
-    public Task<Post> GetPostAsync(int id);
-    public Task<IEnumerable<Post>> GetAllPostsAsync();
-    public Task<IEnumerable<Post>> GetPostsForAuthorAsync(int authorId);
-    public Task<IEnumerable<Post>> GetPublishedPostsAsync();
-    public Task AddPostAsync(Post post);
-    public Task UpdatePostAsync(Post post);
-    public Task DeletePostAsync(int id);
+    public Task<Post> GetPost(int id);
+    public Task<IEnumerable<Post>> GetAllPosts();
+    public Task<IEnumerable<Post>> GetPostsForAuthor(int authorId);
+    public Task<IEnumerable<Post>> GetPublishedPosts();
+    public Task AddPost(Post post);
+    public Task UpdatePost(Post post);
+    public Task DeletePost(int id);
 }
