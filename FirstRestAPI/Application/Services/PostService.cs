@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Authorization;
 public class PostService : IPostService
 {
     private readonly IPostRepository _postRepository;
-    private readonly IPostService _postServiceImplementation;
 
     public PostService(IPostRepository postRepository)
     {

@@ -2,19 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using FirstRestAPI;
 using FirstRestAPI.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using static FirstRestAPI.Common.Enums.ClaimType;
-using static FirstRestAPI.Common.Enums.Roles;
 
 [ApiController]
 [Route("api/[controller]")]
-public class PostController : ControllerBase
-{
-    [ApiController]
-    [Route("api/[controller]")]
     public class PostsController : ControllerBase
     {
         private readonly IPostService _postService;
-
+        
         public PostsController(IPostService postService)
         {
             _postService = postService;
@@ -59,7 +53,6 @@ public class PostController : ControllerBase
             return NoContent();
         }
 
-
         [Authorize(Roles = "Author")]
         [HttpPut("{id}/publish")]
         public async Task<IActionResult> PublishPost(int id)
@@ -75,4 +68,3 @@ public class PostController : ControllerBase
             return 1;
         }
     }
-}
